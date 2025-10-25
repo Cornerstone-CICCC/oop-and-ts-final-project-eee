@@ -3,14 +3,19 @@
   "version": "1.0.0",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc",
+    "build:css": "npx @tailwindcss/cli -i ./src/styles.css -o ./dist/output.css --minify",
+    "build": "tsc && npm run build:css",
     "watch": "tsc --watch",
-    "dev": "npm run build && npx serve .",
+    "watch:css": "npx @tailwindcss/cli -i ./src/styles.css -o ./dist/output.css --watch",
+    "dev": "npm run watch & npm run watch:css & npx serve .",
     "serve": "npx serve ."
   },
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.16",
     "typescript": "^5.2.2"
   }
 }
