@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kanban Board</title>
+    <link href="./dist/output.css" rel="stylesheet" />
+    <script type="module" src="./dist/index.js" defer></script>
+  </head>
+  <body class="bg-white min-h-screen">
+    <header class="bg-white border-b border-custorm-border sticky top-0 z-40">
+      <div class="container mx-auto px-6 py-3">
+        <div
+          class="flex flex-col md:flex-row items-center justify-between gap-4"
+        >
+          <h1 class="text-base font-semibold text-custorm-text">
+            📋 Kanban Board
+          </h1>
+          <div class="relative w-full md:w-96">
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Search..."
+              class="w-full px-3 py-1.5 text-sm bg-custorm-hover border border-custorm-border rounded focus:outline-none focus:border-custorm-black focus:bg-white transition-colors"
+            />
+            <div
+              id="searchResults"
+              class="absolute top-full left-0 w-full bg-white border border-custorm-border rounded mt-1 shadow-lg hidden max-h-64 overflow-y-auto z-50"
+            ></div>
+          </div>
+          <button
+            id="addTaskBtn"
+            class="hover:bg-custorm-black/80 bg-custorm-black text-white text-sm px-4 py-1.5 rounded font-medium flex items-center gap-2 whitespace-nowrap"
+          >
+            <span>+</span>
+            <span>New</span>
+          </button>
+          <button
+            id="clearAllBtn"
+            class="button bg-white hover:bg-custorm-hover border border-custorm-border text-custorm-text text-sm px-3 py-1.5 rounded hidden md:block"
+            title="Clear all tasks (for testing)"
+          >
+            🗑️
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-6">
+      <div class="mb-4 flex flex-wrap gap-2 items-center justify-between">
+        <div class="flex flex-wrap gap-2">
+          <button
+            id="filterAll"
+            class="px-3 py-1.5 text-sm bg-custorm-hover hover:bg-custorm-border rounded font-medium transition-colors filter-btn active border border-transparent"
+          >
+            All
+          </button>
+          <button
+            id="filterLow"
+            class="px-3 py-1.5 text-sm bg-white hover:bg-custorm-hover rounded font-medium transition-colors filter-btn border border-custorm-border"
+          >
+            🟢 Low
+          </button>
+          <button
+            id="filterMedium"
+            class="px-3 py-1.5 text-sm bg-white hover:bg-custorm-hover rounded font-medium transition-colors filter-btn border border-custorm-border"
+          >
+            🟡 Medium
+          </button>
+          <button
+            id="filterHigh"
+            class="px-3 py-1.5 text-sm bg-white hover:bg-custorm-hover rounded font-medium transition-colors filter-btn border border-custorm-border"
+          >
+            🔴 High
+          </button>
+        </div>
+        <div class="text-xs text-custorm-textLight">
+          <span id="taskCount">0 tasks</span>
+        </div>
+      </div>
+
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+        id="kanbanBoard"
+      >
+        <div class="bg-custorm-sidebar rounded-lg p-3" data-column="todo">
+          <div class="flex items-center justify-between mb-3">
+            <h2
+              class="text-sm font-semibold text-custorm-text flex items-center gap-2"
+            >
+              <span>To Do</span>
+            </h2>
+            <span
+              class="bg-white text-custorm-textLight text-xs font-medium px-2 py-0.5 rounded"
+              data-count="todo"
+              >0</span
+            >
+          </div>
+          <div
+            class="space-y-2 min-h-[200px]"
+            id="todoColumn"
+            data-column="todo"
+          ></div>
+        </div>
+
+        <div class="bg-custorm-sidebar rounded-lg p-3" data-column="inprogress">
+          <div class="flex items-center justify-between mb-3">
+            <h2
+              class="text-sm font-semibold text-custorm-text flex items-center gap-2"
+            >
+              <span>In Progress</span>
+            </h2>
+            <span
+              class="bg-white text-custorm-textLight text-xs font-medium px-2 py-0.5 rounded"
+              data-count="inprogress"
+              >0</span
+            >
+          </div>
+          <div
+            class="space-y-2 min-h-[200px]"
+            id="inprogressColumn"
+            data-column="inprogress"
+          ></div>
+        </div>
+
+        <div class="bg-custorm-sidebar rounded-lg p-3" data-column="done">
+          <div class="flex items-center justify-between mb-3">
+            <h2
+              class="text-sm font-semibold text-custorm-text flex items-center gap-2"
+            >
+              <span>Done</span>
+            </h2>
+            <span
+              class="bg-white text-custorm-textLight text-xs font-medium px-2 py-0.5 rounded"
+              data-count="done"
+              >0</span
+            >
+          </div>
+          <div
+            class="space-y-2 min-h-[200px]"
+            id="doneColumn"
+            data-column="done"
+          ></div>
+        </div>
+      </div>
+    </main>
+
+    <div id="modalContainer"></div>
+  </body>
+</html>
