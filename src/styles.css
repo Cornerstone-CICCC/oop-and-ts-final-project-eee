@@ -49,6 +49,15 @@ button {
   animation: fadeIn 0.15s ease;
 }
 
+.filter-btn.active {
+  background-color: #000 !important;
+  color: white !important;
+}
+
+.filter-btn.active:hover {
+  background-color: rgba(0, 0, 0, 0.8) !important;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;

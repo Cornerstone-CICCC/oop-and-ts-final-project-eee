@@ -25,6 +25,15 @@ export class KanbanBoard {
     this.render();
     this.updateStatistics();
     this.attachBannerListener();
+    this.initializeFilterButtons();
+  }
+
+  private initializeFilterButtons(): void {
+    const allButton = document.getElementById("filterAll");
+    if (allButton) {
+      allButton.classList.add("bg-custorm-black", "text-white", "active");
+      allButton.classList.remove("bg-white", "text-custorm-text");
+    }
   }
   private attachBannerListener(): void {
     const closeBannerBtn = document.getElementById("closeBanner");
